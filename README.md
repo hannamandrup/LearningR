@@ -4,7 +4,7 @@ roostools teaching R
 
 # LearningR:
 
-Hello, I'm Hanna
+Hi, how are you (pull)
 
 TODO: Give a brief description of what your project is about
 
