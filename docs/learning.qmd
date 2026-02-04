@@ -5,12 +5,14 @@ format: html
 ---
 
 ```{r setup}
-#| message: false
+#| message: false #tells system to not inlude the messages in the Render-file (default is always true)
 #| warning: false
 
 library(tidyverse)
 
-post_meal_data <- read_csv2(here::here("data/post-meal-insulin.csv"))
+post_meal_data <- read_csv2(here::here("data/post-meal-insulin.csv")) # using csv2 because the data is separated with ;
+
+small_host_meal_data <- select(post_meal_data, id, Age, BMI, Group, auc_pg, auc_ins, glykemi) # creates a new dataframe from the original large dataframe with the given columns
 ```
 
 ## About me
@@ -99,3 +101,28 @@ ggplot(post_meal_data, aes(x = BMI, y = auc_pg)) +
   geom_smooth()
 ```
 
+## Selecting data
+
+```{r}
+select(post_meal_data, Age)
+
+select(post_meal_data, Age, BMI, Weight)
+
+select(post_meal_data, -Group) # Takes all columns except 'Group' because it starts with '-'
+
+select(post_meal_data, starts_with("PG")) # Shows all columns starting with PG
+
+select(post_meal_data, ends_with("DXA")) # Shows all columns ending with DXA
+
+select(post_meal_data, contains("0")) # Shows all columns where a 0 is present somewhere in the column-name
+```
+
+## Renaming columns
+
+```{r}
+small_host_meal_data %>%
+  rename(
+    auc_glucose = auc_pg,
+    auc_insulin = auc_ins
+  )
+```
