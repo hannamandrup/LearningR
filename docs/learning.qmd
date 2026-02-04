@@ -59,3 +59,18 @@ ggplot(post_meal_data, aes(x = BMI)) +
 ```
 See @fig-bmi-histo --> #This gives you a reference to the figure because a label was added to it
 
+## Exercise: discrete plots
+
+```{r}
+#| fig-cap: "Group count"
+#| label: fig-group-bar
+ggplot(post_meal_data, aes(x = Group)) +
+  geom_bar()
+```
+
+See @fig-group-bar above for a cool plot!
+
+
+
+
+
