@@ -263,4 +263,19 @@ post_meal_data |>
   facet_grid(cols = vars(insulin_insensitive))
 ```
 
+## Changing the colour schemes
+
+```{r}
+# Tasks 1. and 2.
+post_meal_data |>
+  mutate(hyperglycemia = if_else(glykemi == 1, "Yes", "No")) |>
+  ggplot(aes(x = Group, fill = hyperglycemia)) +
+  geom_bar(position = position_dodge()) +
+  scale_fill_viridis_d(option = "cividis") # Viridis is colour-blindness friendly, '_d' indicates that data is discrete. Nothing is neded within the parentheses
+
+# Tasks 3. and 4.
+post_meal_data |>
+  ggplot(aes(x = auc_pg, y = auc_ins, colour = BMI)) +
+  geom_point() +
+  scale_colour_viridis_c(option = "inferno") # '_c' indicates that data is continuous. Nothing is neded within the parentheses
 ```
